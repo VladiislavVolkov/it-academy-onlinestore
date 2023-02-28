@@ -1,3 +1,8 @@
 import './main.scss';
+import './App';
+import './components/organisms/Header'
 
-console.log('Hello IT-academy student 🚀');
+const app = document.createElement('it-app');
+const root = document.getElementById('root');
+
+root.append(app);

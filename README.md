@@ -1,1 +1,1 @@
-# it-academy-onlinestore
+# mentoring-simple-webpack-starter

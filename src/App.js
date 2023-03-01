@@ -1,12 +1,51 @@
-import { Component } from './core/Component';
-import './components/organisms/Header';
+class App extends HTMLElement {
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+    };
+  }
 
-class App extends Component {
+  increaseCount = () => {
+    this.state.count = this.state.count + 1;
+    this.innerHTML = this.render();
+  };
+
+  decreaseCount = () => {
+    this.state.count = this.state.count - 1;
+    this.innerHTML = this.render();
+  };
+
+  onClick = (evt) => {
+    if (evt.target.closest('.plus')) {
+      this.increaseCount();
+    }
+    if (evt.target.closest('.minus')) {
+      this.decreaseCount();
+    }
+  };
+
+  //вызовется сразу
+  connectedCallback() {
+    this.innerHTML = this.render();
+
+    this.addEventListener('click', this.onClick);
+  }
+
+  // описывание от событий
+  disconnectedCallback() {
+    this.removeEventListener('click', this.onClick);
+  }
+
   render() {
     return `
-    <it-header></it-header>
+        <div> 
+            <h1>APP - OnLine Shop</h1>
+            <button class='btn btn-primary minus'> - </button>
+            <span>${this.state.count}</span>
+            <button class='btn btn-primary plus'> + </button>
+        </div>
     `;
   }
 }
-
 customElements.define('it-app', App);

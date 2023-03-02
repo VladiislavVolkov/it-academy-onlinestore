@@ -11,9 +11,11 @@ export class Component extends HTMLElement {
     this.innerHTML = this.render();
   }
 
+  // connectedCallback - выполняет ту же фунцкию, что и componentDidMount
   connectedCallback() {
     this.componentDidMount();
     this.innerHTML = this.render();
+
   }
 
   disconnectedCallback() {

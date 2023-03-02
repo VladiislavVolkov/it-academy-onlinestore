@@ -1,4 +1,6 @@
-class App extends HTMLElement {
+import { Component } from './core/Component';
+
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -6,38 +8,12 @@ class App extends HTMLElement {
     };
   }
 
-  increaseCount = () => {
-    this.state.count = this.state.count + 1;
-    this.innerHTML = this.render();
-  };
-
-  decreaseCount = () => {
-    this.state.count = this.state.count - 1;
-    this.innerHTML = this.render();
-  };
-
-  onClick = (event) => {
-    if (event.target.closest('.plus')) {
-      this.increaseCount();
-    }
-    if (event.target.closest('.minus')) {
-      this.decreaseCount();
-    }
-  };
-
-  //вызовется сразу
-  connectedCallback() {
-    this.innerHTML = this.render();
-
-    this.addEventListener('click', this.onClick);
-  }
-
-  // описывание от событий
-  disconnectedCallback() {
-    this.removeEventListener('click', this.onClick);
+  static get observedAttributes() {
+    return ['test'];
   }
 
   render() {
+    console.log(this.props);
     return `
         <div> 
             <h1>APP - OnLine Shop</h1>

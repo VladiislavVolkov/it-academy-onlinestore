@@ -4,4 +4,14 @@ export class Component extends HTMLElement {
     this.props = {};
     this.state = {};
   }
+
+  setState() {}
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  componentWillUpdate() {}
+
+  render() {}
 }

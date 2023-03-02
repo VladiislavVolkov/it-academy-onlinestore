@@ -7,7 +7,7 @@ export class Component extends HTMLElement {
 
   //
   setState(callback) {
-    this.state = callback();
+    this.state = callback(this.state);
     this.innerHTML = this.render();
   }
 
@@ -15,7 +15,6 @@ export class Component extends HTMLElement {
   connectedCallback() {
     this.componentDidMount();
     this.innerHTML = this.render();
-
   }
 
   disconnectedCallback() {

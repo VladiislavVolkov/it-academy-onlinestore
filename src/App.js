@@ -8,6 +8,35 @@ class App extends Component {
     };
   }
 
+  increaseCount() {
+    this.setState((state) => {
+      return {
+        count: state.count < 10 ? state.count + 1 : state.count,
+      };
+    });
+  }
+
+  decreaseCount() {
+    this.setState((state) => {
+      return {
+        count: state.count ? state.count - 1 : state.count,
+      };
+    });
+  }
+
+  onClick = (evt) => {
+    if (evt.target.closest('.plus')) {
+      this.increaseCount();
+    }
+    if (evt.target.closest('.minus')) {
+      this.decreaseCount();
+    }
+  };
+
+  componentDidMount() {
+    this.addEventListener('click', this.onClick);
+  }
+
   render() {
     console.log(this.props);
     return `

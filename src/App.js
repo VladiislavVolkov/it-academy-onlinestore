@@ -8,10 +8,6 @@ class App extends Component {
     };
   }
 
-  static get observedAttributes() {
-    return ['test'];
-  }
-
   render() {
     console.log(this.props);
     return `

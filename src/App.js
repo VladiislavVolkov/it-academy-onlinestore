@@ -16,11 +16,11 @@ class App extends HTMLElement {
     this.innerHTML = this.render();
   };
 
-  onClick = (evt) => {
-    if (evt.target.closest('.plus')) {
+  onClick = (event) => {
+    if (event.target.closest('.plus')) {
       this.increaseCount();
     }
-    if (evt.target.closest('.minus')) {
+    if (event.target.closest('.minus')) {
       this.decreaseCount();
     }
   };

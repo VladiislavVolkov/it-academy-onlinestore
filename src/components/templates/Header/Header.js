@@ -1,30 +1,34 @@
 import { Component } from '../../../core/Component';
 import '../../organisms/Navigation';
-import '../../molecules/Menuitems';
-import { appCategories } from '../../../constants/appCategories';
+import '../../molecules/MenuItems';
+import '../../molecules/SearchForm';
+import '../../molecules/CategoryItems';
 
 class Header extends Component {
+  static get observedAttributes() {
+    return ['categories'];
+  }
+
   render() {
+    const categories = this.props.categories;
+
     return `
-        <header>
+      <header>
 
         <it-navigation></it-navigation>
         
         <nav class="navbar navbar-expand-lg mt-3">
-            <div class="container">
+          <div class="container">
             <div class="collapse navbar-collapse d-flex justify-content-between">
                 
-                <menu-items items='${JSON.stringify(appCategories)}'></menu-items>
+              <category-items items='${categories}'></category-items>
 
-                <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+              <search-form></search-form>
 
             </div>
-            </div>
+          </div>
         </nav>
-        </header>
+      </header>
     `;
   }
 }

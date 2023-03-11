@@ -1,7 +1,7 @@
 import { appPages } from '../../../constants/appPages';
 import { routes } from '../../../constants/routes';
 import { Component } from '../../../core/Component';
-import '../../molecules/Menuitems';
+import '../../molecules/MenuItems';
 
 class Navigation extends Component {
   constructor() {

@@ -1,4 +1,5 @@
 import { Component } from '../../../core/Component';
+import './Card.scss';
 
 class Card extends Component {
   static get observedAttributes() {
@@ -13,10 +14,12 @@ class Card extends Component {
             <img class="image-fit" src="${image}"
             class="card-img-top" alt="${title}">
             <div class="card-body">
-                <h5 class="card-title">${title}</h5>
-                <p class="card-text">${description}</p>
-                <small class="card-title pricing-card-title">${price} byn</small>
-                <a href="#" class="btn btn-primary">Купить</a>
+                <h5 class="card-title fix-line-of-title">${title}</h5>
+                <p class="card-text fix-line-of-description">${description}</p>
+                <div class='d-flex justify-content-between align-items-center border-top pt-2'>
+                  <strong class="card-title pricing-card-title mb-0">${price} BYN</strong>
+                  <button class="btn btn-primary">Купить</button>
+                </div>
             </div>
         </div>
     `;

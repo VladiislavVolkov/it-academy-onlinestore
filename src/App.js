@@ -22,12 +22,12 @@ class App extends Component {
         <it-header categories='${JSON.stringify(appCategories)}'></it-header>
 
         <main>
-          <div class="container mt-5 pt-5 border-top">
+
             ${
               routes.find((route) => route.href === pathname)?.component ??
               '<error-page></error-page>'
             }
-          </div>
+
         </main>
 
         <it-footer></it-footer>

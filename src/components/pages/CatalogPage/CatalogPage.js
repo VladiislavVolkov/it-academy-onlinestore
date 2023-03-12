@@ -4,29 +4,43 @@ import { PRODUCTS } from '../../../constants/products';
 import '../../molecules/Sidebar';
 import '../../organisms/CardList';
 import '../../molecules/Pagination';
+import { eventEmitter } from '../../../core/EventEmitter';
+import { APP_EVENTS } from '../../../constants/appEvents';
 
 class CatalogPage extends Component {
   constructor() {
     super();
     this.state = {
       products: PRODUCTS,
-      limit: 10,
+      limit: 20,
       currentPage: 1,
     };
   }
 
-  getPieceOfData() {
-    const { currentPage, limit } = this.state;
+  sliceData(currentPage = 1) {
+    const { limit } = this.state;
 
-    const start = currentPage;
+    const start = (currentPage - 1) * limit;
     const end = currentPage * limit;
 
-    this.setState(() => {
-
-    })
+    this.setState((state) => {
+      return {
+        ...state,
+        products: PRODUCTS.slice(start, end),
+        currentPage,
+      };
+    });
   }
 
-  componentDidMount() {}
+  onChangePaginationPage = (evt) => {
+    this.sliceData(Number(evt.detail.page));
+    window.scrollTo(0, { behavior: 'smooth' });
+  };
+
+  componentDidMount() {
+    this.sliceData();
+    eventEmitter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+  }
 
   render() {
     return `
@@ -36,9 +50,13 @@ class CatalogPage extends Component {
             <it-sidebar></it-sidebar>
           </div>
           <div class="col-sm-9">
-            <card-list products='${JSON.stringify(PRODUCTS)}'></card-list>
+            <card-list products='${JSON.stringify(this.state.products)}'></card-list>
             <div class='mt-5'>
-              <it-pagination></it-pagination>
+              <it-pagination 
+                total="${PRODUCTS.length}"
+                limit="${this.state.limit}"
+                current="${this.state.currentPage}"
+              ></it-pagination>
             </div>
           </div>
         </div>

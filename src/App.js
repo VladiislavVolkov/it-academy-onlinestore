@@ -14,7 +14,6 @@ import './components/molecules/Footer';
 class App extends Component {
   render() {
     const pathname = window.location.pathname;
-    console.log(pathname);
 
     return `
       <div class="main-layout">

@@ -16,7 +16,7 @@ class Menuitems extends Component {
   }
 
   render() {
-    console.log(JSON.parse(this.props.items));
+
     const items = JSON.parse(this.props.items);
 
     return `

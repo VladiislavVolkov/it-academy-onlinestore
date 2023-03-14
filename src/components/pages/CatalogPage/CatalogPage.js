@@ -14,7 +14,7 @@ class CatalogPage extends Component {
     super();
     this.state = {
       products: PRODUCTS,
-      limit: 20,
+      limit: 12,
       currentPage: 1,
     };
   }
@@ -25,23 +25,34 @@ class CatalogPage extends Component {
     const start = (currentPage - 1) * limit;
     const end = currentPage * limit;
 
-    this.setState((state) => {
-      return {
-        ...state,
-        products: PRODUCTS.slice(start, end),
-        currentPage,
-      };
-    });
+    return this.state.products.slice(start, end);
   }
 
   onChangePaginationPage = (evt) => {
-    this.sliceData(Number(evt.detail.page));
+    this.setState((state) => {
+      return {
+        ...state,
+        currentPage: Number(evt.detail.page),
+      };
+    });
     window.scrollTo(0, { behavior: 'smooth' });
+  };
+
+  onFilterProductsByCategory = (evt) => {
+    const { selectedCategory } = evt.detail;
+    this.setState((state) => {
+      return {
+        ...state,
+        products: PRODUCTS.filter((item) => item.category.id === selectedCategory.id),
+        currentPage: 1,
+      };
+    });
   };
 
   componentDidMount() {
     this.sliceData();
     eventEmitter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+    eventEmitter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
   }
 
   render() {
@@ -53,7 +64,9 @@ class CatalogPage extends Component {
             <it-sidebar></it-sidebar>
           </div>
           <div class="col-sm-9">
-            <card-list products='${JSON.stringify(this.state.products)}'></card-list>
+            <card-list products='${JSON.stringify(
+              this.sliceData(this.state.currentPage),
+            )}'></card-list>
             <div class='mt-5'>
               <it-pagination 
                 total="${PRODUCTS.length}"

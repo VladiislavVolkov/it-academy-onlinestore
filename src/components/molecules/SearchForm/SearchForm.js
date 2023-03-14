@@ -1,6 +1,14 @@
 import { Component } from '../../../core/Component';
 
 class Searchform extends Component {
+  setSearch = (evt) => {
+    console.log(evt);
+  };
+
+  componentDidMount() {
+    this.addEventListener('sumbit', this.setSearch);
+  }
+
   render() {
     return `
         <form class="d-flex" role="search">

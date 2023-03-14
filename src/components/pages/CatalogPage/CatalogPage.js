@@ -49,10 +49,31 @@ class CatalogPage extends Component {
     });
   };
 
+  onSearch = (evt) => {
+    const { data } = evt.detail;
+
+    this.setState((state) => {
+      return {
+        ...state,
+        products: PRODUCTS.filter((item) => {
+          return item.title.toLowerCase().includes(data.search.toLowerCase());
+        }),
+        currentPage: 1,
+      };
+    });
+  };
+
   componentDidMount() {
     this.sliceData();
     eventEmitter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
     eventEmitter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
+    eventEmitter.on(APP_EVENTS.searchProducts, this.onSearch);
+  }
+
+  componentWillUnmount() {
+    eventEmitter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+    eventEmitter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
+    eventEmitter.off(APP_EVENTS.searchProducts, this.onSearch);
   }
 
   render() {
@@ -69,7 +90,7 @@ class CatalogPage extends Component {
             )}'></card-list>
             <div class='mt-5'>
               <it-pagination 
-                total="${PRODUCTS.length}"
+                total="${this.state.products.length}"
                 limit="${this.state.limit}"
                 current="${this.state.currentPage}"
               ></it-pagination>

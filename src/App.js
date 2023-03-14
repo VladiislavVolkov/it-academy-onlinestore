@@ -1,8 +1,7 @@
 import { Component } from './core/Component';
 import { routes } from './constants/routes';
-import { appCategories } from './constants/appCategories';
 
-import './components/templates/Header';
+import './components/organisms/Navigation';
 import './components/pages/BlogPage';
 import './components/pages/CartPage';
 import './components/pages/CatalogPage';
@@ -17,16 +16,13 @@ class App extends Component {
 
     return `
       <div class="main-layout">
-
-        <it-header categories='${JSON.stringify(appCategories)}'></it-header>
+        <it-navigation></it-navigation>
 
         <main>
-
             ${
               routes.find((route) => route.href === pathname)?.component ??
               '<error-page></error-page>'
             }
-
         </main>
 
         <it-footer></it-footer>

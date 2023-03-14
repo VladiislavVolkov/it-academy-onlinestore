@@ -4,7 +4,7 @@ import '../../molecules/MenuItems';
 import '../../molecules/SearchForm';
 import '../../molecules/CategoryItems';
 
-class Header extends Component {
+class CatalogControls extends Component {
   static get observedAttributes() {
     return ['categories'];
   }
@@ -14,9 +14,7 @@ class Header extends Component {
 
     return `
       <header>
-
-        <it-navigation></it-navigation>
-        
+           
         <nav class="navbar navbar-expand-lg mt-3">
           <div class="container">
             <div class="collapse navbar-collapse d-flex justify-content-between">
@@ -33,4 +31,4 @@ class Header extends Component {
   }
 }
 
-customElements.define('it-header', Header);
+customElements.define('catalog-controls', CatalogControls);

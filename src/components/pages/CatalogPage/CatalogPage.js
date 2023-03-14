@@ -4,8 +4,10 @@ import { PRODUCTS } from '../../../constants/products';
 import '../../molecules/Sidebar';
 import '../../organisms/CardList';
 import '../../molecules/Pagination';
+import '../../templates/CatalogControls';
 import { eventEmitter } from '../../../core/EventEmitter';
 import { APP_EVENTS } from '../../../constants/appEvents';
+import { CATEGORIES } from '../../../constants/categories';
 
 class CatalogPage extends Component {
   constructor() {
@@ -44,6 +46,7 @@ class CatalogPage extends Component {
 
   render() {
     return `
+      <catalog-controls categories='${JSON.stringify(CATEGORIES)}'></catalog-controls>
       <div class="container mt-5 pt-5 border-top">
         <div class="row">
           <div class="col-sm-3 border-end">

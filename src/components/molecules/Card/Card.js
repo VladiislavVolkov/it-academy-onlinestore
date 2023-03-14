@@ -5,7 +5,7 @@ class Card extends Component {
   static get observedAttributes() {
     return ['image', 'title', 'description', 'price'];
   }
-
+ 
   render() {
     const { image, title, description, price } = this.props;
 

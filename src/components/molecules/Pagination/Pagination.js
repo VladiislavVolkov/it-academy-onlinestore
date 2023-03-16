@@ -36,7 +36,6 @@ class Pagination extends Component {
     const isDisabledPrevious = Number(current) === 1;
     const isDisabledNext = Number(current) === count.length;
 
-
     return `
         <nav aria-label="Page navigation example">
             <ul class="pagination">

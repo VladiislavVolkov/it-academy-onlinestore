@@ -1,3 +1,3 @@
 export const APP_STORAGE_KEYS = {
-  cardData: 'cardData',
+  cartData: 'cartData',
 };

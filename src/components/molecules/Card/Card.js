@@ -9,18 +9,18 @@ class Card extends Component {
     return ['image', 'title', 'description', 'price', 'id'];
   }
 
-  addToCard = (evt) => {
+  addToCart = (evt) => {
     if (evt.target.closest('.btn')) {
-      storageService.setItem(APP_STORAGE_KEYS.cardData, this.props);
+      storageService.setItem(APP_STORAGE_KEYS.cartData, this.props);
     }
   };
 
   componentDidMount() {
-    this.addEventListener('click', this.addToCard);
+    this.addEventListener('click', this.addToCart);
   }
 
   componentWillUnmount() {
-    this.removeEventListener('click', this.addToCard);
+    this.removeEventListener('click', this.addToCart);
   }
 
   render() {

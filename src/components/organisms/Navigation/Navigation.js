@@ -2,10 +2,13 @@ import { appPages } from '../../../constants/appPages';
 import { routes } from '../../../constants/routes';
 import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
+
 import '../../molecules/MenuItems';
+
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { storageService } from '../../../services/StorageService';
 import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
+import { APP_ROUTES } from '../../../constants/appRoutes';
 
 class Navigation extends Component {
   constructor() {
@@ -51,7 +54,7 @@ class Navigation extends Component {
             
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link position-relative" href="#">
+                <a class="nav-link position-relative" href="${APP_ROUTES.cart}">
                   <img src="./assets/images/icons/cart.svg" alt="cart" width="24" height="24">
                   <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger" >
                     ${this.state.productsCount}

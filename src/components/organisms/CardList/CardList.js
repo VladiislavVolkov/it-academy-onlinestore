@@ -21,6 +21,7 @@ class CardList extends Component {
                         title='${item.title}'
                         price='${item.price}'
                         description='${item.description}'
+                        id='${item.id}'
                     ></it-card>
                 </div>
                 `;

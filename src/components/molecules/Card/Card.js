@@ -10,7 +10,9 @@ class Card extends Component {
 
   addToCart = (evt) => {
     if (evt.target.closest('.btn')) {
-      storageService.setItem(APP_STORAGE_KEYS.cartData, this.props);
+      const allItem = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
+      console.log(allItem);
+      storageService.setItem(APP_STORAGE_KEYS.cartData, [...allItem, this.props]);
     }
   };
 

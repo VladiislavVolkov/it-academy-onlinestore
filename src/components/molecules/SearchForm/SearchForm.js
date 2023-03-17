@@ -1,8 +1,8 @@
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { Component } from '../../../core/Component';
-import { eventEmitter } from '../../../core/EventEmitter';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 
-class Searchform extends Component {
+class SearchForm extends Component {
   onSearch = (evt) => {
     evt.preventDefault();
     const data = {};
@@ -12,7 +12,7 @@ class Searchform extends Component {
     });
 
     if (data.search) {
-      eventEmitter.emit(APP_EVENTS.searchProducts, { data });
+      eventEmmiter.emit(APP_EVENTS.searchProducts, { data });
     }
   };
 
@@ -27,11 +27,11 @@ class Searchform extends Component {
   render() {
     return `
         <form class="d-flex" role="search">
-            <input class="form-control me-2" name="search"  type="search" placeholder="Search" aria-label="Search">
+            <input name='search' class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-    `;
+        `;
   }
 }
 
-customElements.define('search-form', Searchform);
+customElements.define('search-form', SearchForm);

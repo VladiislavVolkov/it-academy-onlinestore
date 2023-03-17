@@ -14,28 +14,27 @@ class Navigation extends Component {
     return `
         <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-        <div class="collapse navbar-collapse d-flex justify-content-between">
-
-        <menu-items 
-          items='${JSON.stringify(appPages)}'
-          active-item='${JSON.stringify(this?.activeItem)}'
-        ></menu-items>
-
+          <div class="collapse navbar-collapse d-flex justify-content-between">
+            <menu-items 
+              items='${JSON.stringify(appPages)}'
+              active-item='${JSON.stringify(this?.activeItem)}'
+            ></menu-items>
+            
             <ul class="navbar-nav">
-            <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link position-relative" href="#">
-                <img src="./assets/images/icons/cart.svg" alt="cart" width="24" height="24">
-                <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
-                    0+
+                  <img src="./assets/images/icons/cart.svg" alt="cart" width="24" height="24">
+                  <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
+                    0
                     <span class="visually-hidden">unread messages</span>
-                </span>
+                  </span>
                 </a>
-            </li>
+              </li>
             </ul>
+          </div>
         </div>
-        </div>
-    </nav>
-    `;
+      </nav>
+        `;
   }
 }
 

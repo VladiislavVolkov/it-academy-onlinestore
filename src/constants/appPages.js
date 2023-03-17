@@ -6,15 +6,15 @@ export const appPages = [
     href: APP_ROUTES.catalog,
   },
   {
-    label: 'Блог',
     href: APP_ROUTES.blog,
+    label: 'Блог',
   },
   {
-    label: 'Контакты',
     href: APP_ROUTES.contacts,
+    label: 'Контакты',
   },
   {
-    label: 'Корзина',
     href: APP_ROUTES.cart,
+    label: 'Корзина',
   },
 ];

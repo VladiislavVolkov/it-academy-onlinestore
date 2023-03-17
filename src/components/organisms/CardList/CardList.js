@@ -1,4 +1,5 @@
 import { Component } from '../../../core/Component';
+
 import '../../molecules/Card';
 
 class CardList extends Component {
@@ -15,19 +16,18 @@ class CardList extends Component {
               .map((item) => {
                 return `
                 <div class="col-sm-3 mb-3">
-                    <it-card 
-                      image='${item.images[0]}'
-                      title='${item.title}'
-                      price='${item.price}'
-                      description='${item.description}'
+                    <it-card
+                        image='${item.images[0]}'
+                        title='${item.title}'
+                        price='${item.price}'
+                        description='${item.description}'
                     ></it-card>
                 </div>
                 `;
               })
               .join(' ')}
-
         </div>
-    `;
+        `;
   }
 }
 

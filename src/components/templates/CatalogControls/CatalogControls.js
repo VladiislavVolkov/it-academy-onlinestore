@@ -1,8 +1,8 @@
 import { Component } from '../../../core/Component';
 import '../../organisms/Navigation';
 import '../../molecules/MenuItems';
-import '../../molecules/SearchForm';
 import '../../molecules/CategoryItems';
+import '../../molecules/SearchForm';
 
 class CatalogControls extends Component {
   static get observedAttributes() {
@@ -14,20 +14,16 @@ class CatalogControls extends Component {
 
     return `
       <header>
-           
         <nav class="navbar navbar-expand-lg mt-3">
           <div class="container">
             <div class="collapse navbar-collapse d-flex justify-content-between">
-                
               <category-items items='${categories}'></category-items>
-
               <search-form></search-form>
-
             </div>
           </div>
         </nav>
       </header>
-    `;
+      `;
   }
 }
 

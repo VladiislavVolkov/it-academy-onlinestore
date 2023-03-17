@@ -1,7 +1,7 @@
 import { Component } from '../../../core/Component';
 import '../../atoms/Link';
 
-class Menuitems extends Component {
+class MenuItems extends Component {
   static get observedAttributes() {
     return ['items', 'active-item'];
   }
@@ -16,27 +16,26 @@ class Menuitems extends Component {
   }
 
   render() {
-
     const items = JSON.parse(this.props.items);
 
     return `
-        <ul class="navbar-nav">
-            ${items
-              .map((item) => {
-                return `
-                        <li class="nav-item">
-                            <it-link 
-                            class="${this.isActive(item) ? 'active' : ''}"
-                            href="${item.href ? item.href : ''}"
-                            content="${item.label}">
-                            </it-link>
-                        </li>  
-                    `;
-              })
-              .join(' ')}
-        </ul>
+      <ul class="navbar-nav">
+        ${items
+          .map((item) => {
+            return `
+              <li class="nav-item">
+                <it-link 
+                  class="${this.isActive(item) ? 'active' : ''}"
+                  href="${item.href ? item.href : ''}"
+                  content="${item.label}"
+                ></it-link>
+              </li>
+            `;
+          })
+          .join(' ')}  
+      </ul>
         `;
   }
 }
 
-customElements.define('menu-items', Menuitems);
+customElements.define('menu-items', MenuItems);

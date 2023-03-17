@@ -10,12 +10,12 @@ export const routes = [
     component: '<contacts-page></contacts-page>',
   },
   {
-    href: APP_ROUTES.blog,
-    component: '<blog-page></blog-page>',
-  },
-  {
     href: APP_ROUTES.cart,
     component: '<cart-page></cart-page>',
+  },
+  {
+    href: APP_ROUTES.blog,
+    component: '<blog-page></blog-page>',
   },
   {
     href: APP_ROUTES.product,

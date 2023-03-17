@@ -3,7 +3,7 @@ import { Component } from '../../../core/Component';
 class BlogPage extends Component {
   render() {
     return `
-        <h1>Blog</h1>
+            <h1>BlogPage<h1>
         `;
   }
 }

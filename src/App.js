@@ -5,7 +5,7 @@ import './components/organisms/Navigation';
 import './components/pages/BlogPage';
 import './components/pages/CartPage';
 import './components/pages/CatalogPage';
-import './components/pages/ContactPage';
+import './components/pages/ContactsPage';
 import './components/pages/ErrorPage';
 import './components/pages/ProductPage';
 import './components/molecules/Footer';
@@ -16,18 +16,15 @@ class App extends Component {
 
     return `
       <div class="main-layout">
-        <it-navigation></it-navigation>
-
+      <it-navigation></it-navigation>
         <main>
-            ${
-              routes.find((route) => route.href === pathname)?.component ??
-              '<error-page></error-page>'
-            }
+          ${
+            routes.find((route) => route.href === pathname)?.component ??
+            '<error-page></error-page>'
+          }
         </main>
-
         <it-footer></it-footer>
-
-      </div> 
+      </div>
     `;
   }
 }

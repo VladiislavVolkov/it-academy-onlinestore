@@ -1,11 +1,11 @@
-import { Component } from '../../../core/Component';
 import { PRODUCTS } from '../../../constants/products';
+import { Component } from '../../../core/Component';
 
 import '../../molecules/Sidebar';
-import '../../organisms/CardList';
 import '../../molecules/Pagination';
+import '../../organisms/CardList';
 import '../../templates/CatalogControls';
-import { eventEmitter } from '../../../core/EventEmitter';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { CATEGORIES } from '../../../constants/categories';
 
@@ -51,7 +51,6 @@ class CatalogPage extends Component {
 
   onSearch = (evt) => {
     const { data } = evt.detail;
-
     this.setState((state) => {
       return {
         ...state,
@@ -65,26 +64,26 @@ class CatalogPage extends Component {
 
   componentDidMount() {
     this.sliceData();
-    eventEmitter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
-    eventEmitter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
-    eventEmitter.on(APP_EVENTS.searchProducts, this.onSearch);
+    eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+    eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
+    eventEmmiter.on(APP_EVENTS.searchProducts, this.onSearch);
   }
 
   componentWillUnmount() {
-    eventEmitter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
-    eventEmitter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
-    eventEmitter.off(APP_EVENTS.searchProducts, this.onSearch);
+    eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+    eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
+    eventEmmiter.off(APP_EVENTS.searchProducts, this.onSearch);
   }
 
   render() {
     return `
-      <catalog-controls categories='${JSON.stringify(CATEGORIES)}'></catalog-controls>
-      <div class="container mt-5 pt-5 border-top">
+    <catalog-controls categories='${JSON.stringify(CATEGORIES)}'></catalog-controls>
+    <div class="container mt-5 pt-5 border-top">
         <div class="row">
-          <div class="col-sm-3 border-end">
+          <div class='col-sm-3 border-end'>
             <it-sidebar></it-sidebar>
           </div>
-          <div class="col-sm-9">
+          <div class='col-sm-9'>
             <card-list products='${JSON.stringify(
               this.sliceData(this.state.currentPage),
             )}'></card-list>

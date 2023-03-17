@@ -1,6 +1,6 @@
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { Component } from '../../../core/Component';
-import { eventEmitter } from '../../../core/EventEmitter';
+import { eventEmmiter } from '../../../core/EventEmmiter';
 
 class CategoryItems extends Component {
   static get observedAttributes() {
@@ -13,7 +13,7 @@ class CategoryItems extends Component {
       const id = evt.target.dataset.id;
       const items = JSON.parse(this.props.items);
       const selectedCategory = items.find((item) => item.id === Number(id));
-      eventEmitter.emit(APP_EVENTS.setCategory, { selectedCategory });
+      eventEmmiter.emit(APP_EVENTS.setCategory, { selectedCategory });
     }
   };
 
@@ -34,9 +34,9 @@ class CategoryItems extends Component {
               .slice(0, 5)
               .map((item) => {
                 return `
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" data-id="${item.id}">${item.name}</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-id="${item.id}">${item.name}</a>
+                </li>
                 `;
               })
               .join(' ')}

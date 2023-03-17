@@ -1,5 +1,5 @@
 import { APP_EVENTS } from '../constants/appEvents';
-import { eventEmitter } from '../core/eventEmitter';
+import { eventEmmiter } from '../core/EventEmmiter';
 
 class StorageService {
   constructor() {
@@ -9,7 +9,7 @@ class StorageService {
   setItem(key, value) {
     try {
       this.storage.setItem(key, JSON.stringify(value));
-      eventEmitter.emit(APP_EVENTS.storage, { data: this.getItem(key) });
+      eventEmmiter.emit(APP_EVENTS.storage, { data: this.getItem(key) });
     } catch (error) {
       console.error(error);
     }
@@ -25,12 +25,12 @@ class StorageService {
 
   removeItem(key) {
     this.storage.removeItem(key);
-    eventEmitter.emit(APP_EVENTS.storage, { data: this.getItem(key) });
+    eventEmmiter.emit(APP_EVENTS.storage, { data: this.getItem(key) });
   }
 
   clear() {
     this.storage.clear();
-    eventEmitter.emit(APP_EVENTS.storage, { data: null });
+    eventEmmiter.emit(APP_EVENTS.storage, { data: null });
   }
 }
 

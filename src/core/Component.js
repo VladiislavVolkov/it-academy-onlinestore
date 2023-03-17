@@ -1,45 +1,33 @@
 export class Component extends HTMLElement {
   constructor() {
     super();
-    this.props = {};
     this.state = {};
+    this.props = {};
   }
 
-  //
   setState(callback) {
     this.state = callback(this.state);
     this.innerHTML = this.render();
   }
 
-  // connectedCallback - выполняет ту же фунцкию, что и componentDidMount
   connectedCallback() {
-    this.componentDidMount();
     this.innerHTML = this.render();
+    this.componentDidMount();
   }
 
   disconnectedCallback() {
     this.componentWillUnmount();
   }
 
-  // вызовется когда атрибуты нашего компонента будут изменены
-  // name - имя атрибута, который был изменен
-  // oldValue - старое значение атрибута
-  // newValue - новое значение атрибута
   attributeChangedCallback(name, oldValue, newValue) {
     this.componentWillUpdate(name, oldValue, newValue);
-    this.getAttributeNames().forEach((attributeName) => {
-      this.props[attributeName] = this.getAttribute(attributeName);
+    this.getAttributeNames().forEach((name) => {
+      this.props[name] = this.getAttribute(name);
     });
   }
 
-  // компонент смонтировался
   componentDidMount() {}
-
-  // компонент размонтируется
   componentWillUnmount() {}
-
-  // компонент будет обновляться
   componentWillUpdate() {}
-
   render() {}
 }

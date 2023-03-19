@@ -1,4 +1,6 @@
-class App extends HTMLElement {
+import { Component } from './core/Component';
+
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -6,17 +8,27 @@ class App extends HTMLElement {
     };
   }
 
-  increaseCount = () => {
-    this.state.count = this.state.count + 1;
-    console.log(this.state);
-    this.innerHTML = this.render();
-  };
+  // пример с атрибутами
+  static get observedAttributes() {
+    return ['atrtest'];
+  }
 
-  decreaseCount = () => {
-    this.state.count = this.state.count - 1;
+  increaseCount() {
+    this.setState((state) => {
+      return {
+        count: state.count < 10 ? state.count + 1 : state.count,
+      };
+    });
     console.log(this.state);
-    this.innerHTML = this.render();
-  };
+  }
+
+  decreaseCount() {
+    this.setState((state) => {
+      return {
+        count: state.count ? state.count - 1 : state.count,
+      };
+    });
+  }
 
   onClick = (evt) => {
     if (evt.target.closest('.plus')) {
@@ -27,16 +39,12 @@ class App extends HTMLElement {
     }
   };
 
-  connectedCallback() {
-    this.innerHTML = this.render();
+  componentDidMount() {
     this.addEventListener('click', this.onClick);
   }
 
-  disconnectedCallback() {
-    this.removeEventListener('click', this.onClick);
-  }
-
   render() {
+    // console.log(this.props.atrtest);
     return `
         <div>
             <button class='btn btn-primary minus'>---</button>

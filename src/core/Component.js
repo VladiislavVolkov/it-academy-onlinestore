@@ -6,7 +6,7 @@ export class Component extends HTMLElement {
   }
 
   setState(callback) {
-    this.state = callback();
+    this.state = callback(this.state);
     this.innerHTML = this.render();
   }
 
@@ -25,6 +25,7 @@ export class Component extends HTMLElement {
   // newValue - новое значение атрибута
   attributeChangedCallback(name, oldValue, newValue) {
     this.componentWillUpdate(name, oldValue, newValue);
+
     // поведение которое следит за всеми атрибутами
     this.getAttributeNames().forEach((attributeName) => {
       this.props[attributeName] = this.getAttribute(attributeName);

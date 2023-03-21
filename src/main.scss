@@ -12,3 +12,7 @@
   grid-template-rows: max-content 1fr 60px;
   min-height: calc(100vh - 60px);
 }
+ 
+it-app {
+  position: relative;
+}

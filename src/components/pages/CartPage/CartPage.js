@@ -64,7 +64,9 @@ class CartPage extends Component {
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
+  }
 
   render() {
     return `

@@ -4,6 +4,7 @@ import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 
 import '../../molecules/MenuItems';
+import './Navigation.scss';
 
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { storageService } from '../../../services/StorageService';
@@ -62,7 +63,7 @@ class Navigation extends Component {
 
   render() {
     return `
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-expand-lg bg-light fixed">
         <div class="container">
           <div class="collapse navbar-collapse d-flex justify-content-between">
             <menu-items 

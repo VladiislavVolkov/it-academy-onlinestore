@@ -1,4 +1,5 @@
 import { Component } from './core/Component';
+import './core/Router/Router';
 import { routes } from './constants/routes';
 
 import './components/organisms/Navigation';
@@ -12,16 +13,51 @@ import './components/molecules/Footer';
 
 class App extends Component {
   render() {
-    const pathname = window.location.pathname;
-
     return `
       <div class="main-layout">
       <it-navigation></it-navigation>
         <main>
-          ${
-            routes.find((route) => route.href === pathname)?.component ??
-            '<error-page></error-page>'
-          }
+          <app-router>
+
+            <app-route 
+              path="${routes.catalog.href}" 
+              title="Catalog" 
+              component="${routes.catalog.component}">
+            </app-route>
+
+            <app-route 
+              path="${routes.contacts.href}" 
+              title="Contacts" 
+              component="${routes.contacts.component}">
+            </app-route>
+
+            <app-route 
+              path="${routes.cart.href}" 
+              title="Cart" 
+              component="${routes.cart.component}">
+            </app-route>
+
+            <app-route 
+              path="${routes.blog.href}" 
+              title="Blog" 
+              component="${routes.blog.component}">
+            </app-route>
+
+            <app-route 
+              path="${routes.productView.href}" 
+              title="ProductView" 
+              component="${routes.productView.component}">
+            </app-route>
+
+            <app-route 
+              path="${routes.error.href}" 
+              title="Error" 
+              component="${routes.error.component}">
+            </app-route>
+
+            <app-outlet></app-outlet>
+
+          </app-router>
         </main>
         <it-footer></it-footer>
       </div>

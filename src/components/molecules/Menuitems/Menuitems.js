@@ -1,4 +1,5 @@
 import { Component } from '../../../core/Component';
+
 import '../../atoms/Link';
 
 class MenuItems extends Component {
@@ -24,11 +25,13 @@ class MenuItems extends Component {
           .map((item) => {
             return `
               <li class="nav-item">
+              <router-link to="${item.href}">
                 <it-link 
                   class="${this.isActive(item) ? 'active' : ''}"
                   href="${item.href ? item.href : ''}"
                   content="${item.label}"
                 ></it-link>
+                </router-link>
               </li>
             `;
           })

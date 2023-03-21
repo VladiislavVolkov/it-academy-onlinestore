@@ -20,7 +20,9 @@ class CartPage extends Component {
       .map((item) => {
         return {
           ...item,
-          quantity: products.filter((filterItem) => filterItem.id === item.id).length,
+          quantity: item.quantity
+            ? item.quantity
+            : products.filter((filterItem) => filterItem.id === item.id).length,
         };
       });
 
@@ -35,8 +37,18 @@ class CartPage extends Component {
   onDeleteItem = (evt) => {
     if (evt.target.closest('.btn-danger')) {
       const id = evt.target.dataset.id;
-      const items = storageService.getItem(APP_STORAGE_KEYS.cartData);
-      const filteredItems = items.filter((item) => item.id !== id);
+      const items = this.state.products;
+      const filteredItems = items
+        .map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          }
+          return item;
+        })
+        .filter((item) => Boolean(item.quantity));
       storageService.setItem(APP_STORAGE_KEYS.cartData, filteredItems);
     }
   };

@@ -1,5 +1,5 @@
 import { Component } from '../../../core/Component';
-
+import '../../../core/Router/Link';
 import '../../atoms/Link';
 
 class MenuItems extends Component {

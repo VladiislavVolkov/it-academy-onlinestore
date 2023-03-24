@@ -5,6 +5,7 @@ import { eventEmmiter } from '../EventEmmiter';
 export class Link extends Component {
   constructor() {
     super();
+    this.isShadow = true;
   }
 
   static get observedAttributes() {
@@ -25,8 +26,12 @@ export class Link extends Component {
   }
 
   render() {
-    console.log(this.props.children);
     return `
+      <style>
+        a { 
+          text-decoration: none
+        }
+      </style>
       <a href="${this.props.to}">
         <slot></slot>
       </a>
@@ -34,4 +39,4 @@ export class Link extends Component {
   }
 }
 
-customElements.define('route-link', Link);
+customElements.define('router-link', Link);

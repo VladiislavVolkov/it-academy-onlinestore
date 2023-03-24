@@ -9,6 +9,8 @@ import { eventEmmiter } from '../../../core/EventEmmiter';
 import { APP_EVENTS } from '../../../constants/appEvents';
 import { CATEGORIES } from '../../../constants/categories';
 
+import '../../../widgets/Weather/Weather';
+
 class CatalogPage extends Component {
   constructor() {
     super();
@@ -81,7 +83,7 @@ class CatalogPage extends Component {
     <div class="container mt-5 pt-5 border-top">
         <div class="row">
           <div class='col-sm-3 border-end'>
-            <it-sidebar></it-sidebar>
+            <it-weather></it-weather>
           </div>
           <div class='col-sm-9'>
             <card-list products='${JSON.stringify(

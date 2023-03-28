@@ -17,4 +17,8 @@ export const appPages = [
     href: APP_ROUTES.cart,
     label: 'Корзина',
   },
+  {
+    href: APP_ROUTES.admin,
+    label: 'ADMIN',
+  },
 ];

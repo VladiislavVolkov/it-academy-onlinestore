@@ -25,4 +25,8 @@ export const routes = {
     href: '*',
     component: 'error-page',
   },
+  admin: {
+    href: APP_ROUTES.admin,
+    component: 'admin-page',
+  },
 };

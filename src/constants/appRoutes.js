@@ -4,4 +4,5 @@ export const APP_ROUTES = {
   contacts: '/contacts',
   cart: '/cart',
   product: '/catalog/:id',
+  admin: '/admin',
 };

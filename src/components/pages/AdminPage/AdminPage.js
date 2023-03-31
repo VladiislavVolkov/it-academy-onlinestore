@@ -2,38 +2,34 @@ import { Component } from '../../../core/Component';
 import { databaseService } from '../../../services/DatabaseService';
 
 class AdminPage extends Component {
+  createCategory = (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+    databaseService.createDocument('categories', data).then(() => {
+      evt.target.reset();
+    });
+  };
+  componentDidMount() {
+    this.addEventListener('submit', this.createCategory);
+  }
+  componentWillUnmount() {
+    this.removeEventListener('submit', this.createCategory);
+  }
   render() {
     return `
         <div class="container mt-5">
-            <div class="mb-3">
-                <h1>ADMIN PAGE - ITEM</h1>
+            <div class="mb-5">
+                <form class="mb-3 border p-3">
+                    <label class="form-label">Create category</label>
+                    <input name="name" type="text" class="form-control" placeholder="Type a category name">
+                </form>
             </div>
-
-            <div class="mb-3 ">
-                <label for="title" class="form-label">Title.item</label>
-                <input type="text" class="form-control form-control-lg" id="Title.item">
-            </div>
-
-            <div class="mb-3">
-                <label for="description" class="form-label">Description.item</label>
-                <textarea class="form-control" id="description" rows="3"></textarea>
-            </div>
-
-            <div class="row g-3 align-items-center">
-                <div class="col-auto">
-                    <label for="price" class="col-form-label">Price</label>
-                </div>
-                <div class="col-auto">
-                    <input type="text" id="price" class="form-control" aria-labelledby="price">
-                </div>
-                <div class="col-auto">
-                    <span id="price" class="form-text">777 BYN</span>
-                </div>
-            </div>                
-
-        </div>    
-        `;
+        </div>      
+    `;
   }
 }
-
 customElements.define('admin-page', AdminPage);

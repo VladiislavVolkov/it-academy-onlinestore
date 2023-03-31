@@ -15,7 +15,7 @@ class DatabaseService {
     this.database = getFirestore(cloudService.app);
   }
 
-  createdDocument(collectionKey, body) {
+  createDocument(collectionKey, body) {
     const collectionRef = collection(this.database, collectionKey);
     return addDoc(collectionRef, body);
   }

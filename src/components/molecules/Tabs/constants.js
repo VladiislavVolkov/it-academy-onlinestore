@@ -9,6 +9,12 @@ export const menuItems = [
   },
   {
     id: '3',
-    label: 'Block Form',
+    label: 'Blog Form',
   },
 ];
+
+export const forms = {
+  1: '<category-form></category-form>',
+  2: '<product-form></product-form>',
+  3: '<blog-form></blog-form>',
+};

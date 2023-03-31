@@ -4,8 +4,8 @@ import { databaseService } from '../../../services/DatabaseService';
 class AdminPage extends Component {
   createCategory = (evt) => {
     evt.preventDefault();
-    const data = {};
     const formData = new FormData(evt.target);
+    const data = {};
     formData.forEach((value, key) => {
       data[key] = value;
     });

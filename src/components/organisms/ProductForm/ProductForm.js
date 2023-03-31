@@ -28,7 +28,7 @@ class ProductForm extends Component {
           const image = new Image();
           image.src = result;
           image.width = 200;
-          image.height = 200;
+          image.height = 310;
           const previewBlock = this.querySelector('.preview-image');
           previewBlock.append(image);
         })

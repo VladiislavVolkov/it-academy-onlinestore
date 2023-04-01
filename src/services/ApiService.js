@@ -1,12 +1,10 @@
-//http://api.openweathermap.org/data/2.5
-
 export class ApiService {
   constructor(baseURL) {
     this._baseURL = baseURL;
   }
 
   post(url = '', body, options = {}) {
-    return fetch(this._baseURL + url, { method: 'POST' }, body, ...options).then((response) =>
+    return fetch(this._baseURL + url, { method: 'POST', body, ...options }).then((response) =>
       response.json(),
     );
   }
@@ -26,7 +24,7 @@ export class ApiService {
   }
 
   put(url = '', body, options = {}) {
-    return fetch(this._baseURL + url, { method: 'PUT' }, body, ...options).then((response) =>
+    return fetch(this._baseURL + url, { method: 'PUT', body, ...options }).then((response) =>
       response.json(),
     );
   }

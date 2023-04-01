@@ -4,4 +4,8 @@ export const APP_EVENTS = {
   searchProducts: 'searchProducts',
   storage: 'storage',
   changeRoute: 'changeRoute',
+  changeTab: 'changeTab',
+  createCategory: 'createCategory',
+  createProduct: 'createProduct',
+  createBlog: 'createBlog',
 };

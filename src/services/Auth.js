@@ -13,11 +13,11 @@ class AuthService {
   }
 
   signIn(email, password) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+    return signInWithEmailAndPassword(this.auth, email, password);
   }
 
   signUp(email, password) {
-    return signInWithEmailAndPassword(this.auth, email, password);
+    return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
   signOut() {

@@ -21,12 +21,17 @@ export const routes = {
     href: APP_ROUTES.product,
     component: 'product-page',
   },
-  error: {
-    href: '*',
-    component: 'error-page',
-  },
   admin: {
     href: APP_ROUTES.admin,
     component: 'admin-page',
   },
+  signUp: {
+    href: APP_ROUTES.signUp,
+    component: 'sign-up-page',
+  },
+  error: {
+    href: '*',
+    component: 'error-page',
+  },
+
 };

@@ -21,4 +21,8 @@ export const appPages = [
     href: APP_ROUTES.admin,
     label: 'ADMIN',
   },
+  {
+    href: APP_ROUTES.signUp,
+    label: 'SignUp',
+  },
 ];

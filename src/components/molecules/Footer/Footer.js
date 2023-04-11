@@ -6,7 +6,7 @@ class Footer extends Component {
     <div class="container">
         <footer>
           <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-            <p>© 2022 Company, Inc. All rights reserved.</p>
+            <p>© 2023 Company, Inc. All rights reserved.</p>
           </div>
         </footer>
       </div>

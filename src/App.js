@@ -11,6 +11,7 @@ import './components/pages/ErrorPage';
 import './components/pages/ProductPage';
 import './components/molecules/Footer';
 import './components/pages/AdminPage';
+import './components/pages/SignUpPage';
 
 class App extends Component {
   render() {
@@ -54,6 +55,12 @@ class App extends Component {
               path="${routes.admin.href}" 
               title="Admin" 
               component="${routes.admin.component}">
+            </app-route>
+
+            <app-route 
+              path="${routes.signUp.href}" 
+              title="SignUp" 
+              component="${routes.signUp.component}">
             </app-route>
 
             <app-route 

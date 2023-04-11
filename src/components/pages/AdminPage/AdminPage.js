@@ -103,7 +103,7 @@ class AdminPage extends Component {
   }
 }
 customElements.define('admin-page', AdminPage);
-
+ 
 {
   /* <form class="mb-3 border p-3">
 <label class="form-label">Create category</label>

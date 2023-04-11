@@ -6,6 +6,7 @@ import { readerFile } from '../../../utils/readFile';
 class ProductForm extends Component {
   onSubmit = (evt) => {
     evt.preventDefault();
+    const preview = this.querySelector('.preview-image');
     const formData = new FormData(evt.target);
     const data = {};
     formData.forEach((value, key) => {
@@ -17,12 +18,14 @@ class ProductForm extends Component {
     if (isValid) {
       eventEmmiter.emit(APP_EVENTS.createProduct, { data });
       evt.target.reset();
+      preview.innerHTML = '';
     }
   };
 
   onChange = (evt) => {
     if (evt.target.closest('.preview-input')) {
       const file = evt.target.files[0];
+
       readerFile(file)
         .then((result) => {
           const image = new Image();
@@ -82,7 +85,7 @@ class ProductForm extends Component {
           <div class="mb-3">
             <label class="form-label w-100">
               <p>Product Description</p>
-              <textarea class="form-control" rows="3"></textarea>
+              <textarea name="description" class="form-control" rows="3"></textarea>
             </label>
           </div>
 

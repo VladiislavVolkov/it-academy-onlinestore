@@ -10,7 +10,7 @@ class Weather extends Component {
       weather: {},
     };
   }
-
+ 
   setIsLoading(isLoading) {
     this.setState((state) => {
       return {

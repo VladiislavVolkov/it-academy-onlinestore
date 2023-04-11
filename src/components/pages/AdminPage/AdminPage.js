@@ -11,14 +11,27 @@ import '../../organisms/BlogForm';
 import '../../organisms/ProductForm';
 import '../../organisms/CategoryForm';
 import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
+import { firebaseStorageService } from '../../../services/FirebaseStorageService';
+
+import '../../molecules/Preloader';
 
 class AdminPage extends Component {
   constructor() {
     super();
     this.state = {
       activeTab: menuItems[0],
+      isLoading: false,
     };
   }
+
+  setIsLoading = (isLoading) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        isLoading,
+      };
+    });
+  };
 
   setActiveItem = (activeTab) => {
     this.setState((state) => {
@@ -29,26 +42,52 @@ class AdminPage extends Component {
     });
   };
 
+  onChangeTab = ({ detail }) => {
+    this.setActiveItem(detail.activeItem);
+  };
+
   createCategory = ({ detail }) => {
     databaseService.createDocument(FIRESTORE_KEYS.categories, detail.data);
   };
 
-  onChangeTab = ({ detail }) => {
-    this.setActiveItem(detail.activeItem);
+  createProduct = ({ detail }) => {
+    this.setIsLoading(true);
+    const { data } = detail;
+
+    console.log(data);
+    firebaseStorageService
+      .uploadFile(data.preview, 'products')
+      .then((snapshot) => {
+        firebaseStorageService.downloadURL(snapshot.ref).then((url) => {
+          databaseService.createDocument('products', {
+            ...data,
+            preview: url,
+          });
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        this.setIsLoading(false);
+      });
   };
 
   componentDidMount() {
     eventEmmiter.on(APP_EVENTS.changeTab, this.onChangeTab);
     eventEmmiter.on(APP_EVENTS.createCategory, this.createCategory);
+    eventEmmiter.on(APP_EVENTS.createProduct, this.createProduct);
   }
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.changeTab, this.onChangeTab);
     eventEmmiter.off(APP_EVENTS.createCategory, this.createCategory);
+    eventEmmiter.off(APP_EVENTS.createProduct, this.createProduct);
   }
 
   render() {
     return `
+      <it-preloader is-loading="${this.state.isLoading}">
         <div class="container mt-5">
             <div class="mb-5">
                 <it-tabs menu-items='${JSON.stringify(menuItems)}' 
@@ -58,7 +97,8 @@ class AdminPage extends Component {
                     ${forms[this.state.activeTab.id]}
                 </div>
             </div>
-        </div>      
+        </div>  
+      </it-preloader>            
     `;
   }
 }

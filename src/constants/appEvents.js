@@ -9,4 +9,6 @@ export const APP_EVENTS = {
   createProduct: 'createProduct',
   createBlog: 'createBlog',
   signUp: 'signUp',
+  signIn: 'signIn',
+  authorizeUser: 'authorizeUser',
 };

@@ -3,11 +3,11 @@ import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { getFormData } from '../../../utils/form';
 
-class RegisterForm extends Component {
+class SignInForm extends Component {
   onSubmit = (evt) => {
     evt.preventDefault();
     const { email, password } = getFormData(evt.target);
-    eventEmmiter.emit(APP_EVENTS.signUp, {
+    eventEmmiter.emit(APP_EVENTS.signIn, {
       data: {
         email,
         password,
@@ -29,7 +29,7 @@ class RegisterForm extends Component {
         <div class="mb-3">
 
           <label class="form-label w-100">
-            <p>Email для регистрации<p>
+            <p>Введите Ваш Email<p>
             <input name="email" type="emails" class="form-control">
           </label>
 
@@ -37,25 +37,17 @@ class RegisterForm extends Component {
         <div class="mb-3">
 
           <label class="form-label w-100">
-            <p>Придумайте пароль<p>
+            <p>Введите пароль<p>
             <input name="password" type="password" class="form-control" required>
           </label>
 
         </div>
-        <div class="mb-3">
 
-          <label class="form-label w-100">
-            <p>Повторите пароль<p>
-            <input name="confirm-password" type="password" class="form-control" required>
-          </label>
-
-        </div>
-
-        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <button type="submit" class="btn btn-primary">Выполнить вход</button>
 
       </form>
     `;
   }
 }
 
-customElements.define('register-form', RegisterForm);
+customElements.define('sign-in-form', SignInForm);

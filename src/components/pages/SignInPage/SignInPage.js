@@ -4,9 +4,9 @@ import { Component } from '../../../core/Component';
 import { eventEmmiter } from '../../../core/EventEmmiter';
 import { authService } from '../../../services/Auth';
 import '../../molecules/Preloader';
-import '../../organisms/RegisterForm';
+import '../../organisms/SignInForm';
 
-class SignUpPage extends Component {
+class SignInPage extends Component {
   constructor() {
     super();
     this.state = {
@@ -33,15 +33,14 @@ class SignUpPage extends Component {
     });
   }
 
-  register = async ({ detail }) => {
+  signIn = async ({ detail }) => {
     const { data } = detail;
     this.setIsLoading(true);
     try {
-      const user = await authService.signUp(data.email, data.password);
+      const user = await authService.signIn(data.email, data.password);
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.catalog });
     } catch (error) {
-      console.log(error);
       this.setError(error.message);
     } finally {
       this.setIsLoading(false);
@@ -49,10 +48,11 @@ class SignUpPage extends Component {
   };
 
   componentDidMount() {
-    eventEmmiter.on(APP_EVENTS.signUp, this.register);
+    eventEmmiter.on(APP_EVENTS.signIn, this.signIn);
   }
+
   componentWillUnmount() {
-    eventEmmiter.off(APP_EVENTS.signUp, this.register);
+    eventEmmiter.off(APP_EVENTS.signIn, this.signIn);
   }
 
   render() {
@@ -60,12 +60,12 @@ class SignUpPage extends Component {
     return `
     <it-preloader is-loading="${this.state.isLoading}">
         <div class="container mt-5">
-            <h1 class="text-center mt-5">Регистрация / SignUp</h1>
+            <h1 class="text-center mt-5">Вход / SignIn</h1>
             <div class="row justify-content-center mt-5">
                 <div class="col-4">
                     <div class="border p-4">
-                      ${message ? `<div class="invalid-feedback d-block">${message}</div>` : ''}
-                      <register-form></register-form>
+                        ${message ? `<div class="invalid-feedback d-block">${message}</div>` : ''}
+                        <sign-in-form></sign-in-form>
                     </div>
                 </div>
             </div>    
@@ -75,4 +75,4 @@ class SignUpPage extends Component {
   }
 }
 
-customElements.define('sign-up-page', SignUpPage);
+customElements.define('sign-in-page', SignInPage);

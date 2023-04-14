@@ -17,6 +17,7 @@ class Navigation extends Component {
     super();
     this.state = {
       productsCount: 0,
+      user: null,
     };
   }
 
@@ -49,7 +50,17 @@ class Navigation extends Component {
     this.setProductsCount(count);
   };
 
+  setUser(evt) {
+    this.setState((state) => {
+      return {
+        ...state,
+        user: evt.detail.user,
+      };
+    });
+  }
+
   componentDidMount() {
+    eventEmmiter.on(APP_EVENTS.authorizeUser, this.setUser);
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
     const items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
     const count = this.countProducts(items);
@@ -58,6 +69,7 @@ class Navigation extends Component {
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
+    eventEmmiter.off(APP_EVENTS.authorizeUser, this.setUser);
   }
 
   render() {

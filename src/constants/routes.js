@@ -29,9 +29,12 @@ export const routes = {
     href: APP_ROUTES.signUp,
     component: 'sign-up-page',
   },
+  signIn: {
+    href: APP_ROUTES.signIn,
+    component: 'sign-in-page',
+  },
   error: {
     href: '*',
     component: 'error-page',
   },
-
 };

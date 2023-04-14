@@ -23,6 +23,10 @@ export const appPages = [
   },
   {
     href: APP_ROUTES.signUp,
-    label: 'SignUp',
+    label: 'Регистрация',
+  },
+  {
+    href: APP_ROUTES.signIn,
+    label: 'Вход',
   },
 ];

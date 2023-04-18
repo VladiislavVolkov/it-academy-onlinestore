@@ -11,7 +11,6 @@ import { cloudService } from './CloudService';
 class AuthService {
   constructor() {
     this.auth = getAuth(cloudService.app);
-    this._user = null;
   }
 
   authorizeUser() {

@@ -13,6 +13,7 @@ import './components/molecules/Footer';
 import './components/pages/AdminPage';
 import './components/pages/SignUpPage';
 import './components/pages/SignInPage';
+import './components/pages/SignOutPage';
 import { authService } from './services/Auth';
 
 import './components/molecules/Preloader';
@@ -24,7 +25,17 @@ class App extends Component {
     super();
     this.state = {
       isLoading: false,
+      user: null,
     };
+  }
+
+  setUser(user) {
+    this.setState((state) => {
+      return {
+        ...state,
+        user,
+      };
+    });
   }
 
   isLoading = (isLoading) => {
@@ -40,8 +51,7 @@ class App extends Component {
     this.isLoading(true);
     try {
       const user = await authService.authorizeUser();
-      console.log(user);
-      eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
+      this.setUser(user);
     } catch (error) {
       console.error(error);
     } finally {
@@ -49,17 +59,24 @@ class App extends Component {
     }
   }
 
+  onAuthorizeUser = ({ detail }) => {
+    this.setUser(detail.user);
+  };
+
   componentDidMount() {
     this.authorizeUser();
+    eventEmmiter.on(APP_EVENTS.authorizeUser, this.onAuthorizeUser);
   }
 
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    eventEmmiter.off(APP_EVENTS.authorizeUser, this.onAuthorizeUser);
+  }
 
   render() {
     return `
     <it-preloader is-loading="${this.state.isLoading}">
       <div class="main-layout">
-        <it-navigation></it-navigation>
+        <it-navigation user='${JSON.stringify(this.state.user)}'></it-navigation>
         <main>
           <app-router>
 
@@ -103,6 +120,12 @@ class App extends Component {
               path="${routes.signUp.href}" 
               title="SignUp" 
               component="${routes.signUp.component}">
+            </app-route>
+
+            <app-route 
+              path="${routes.signOut.href}" 
+              title="SignIn" 
+              component="${routes.signOut.component}">
             </app-route>
 
             <app-route 

@@ -41,7 +41,6 @@ class SignUpPage extends Component {
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
       eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.catalog });
     } catch (error) {
-      console.log(error);
       this.setError(error.message);
     } finally {
       this.setIsLoading(false);

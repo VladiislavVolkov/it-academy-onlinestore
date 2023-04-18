@@ -11,14 +11,18 @@ import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
 import { APP_ROUTES } from '../../../constants/appRoutes';
 
 import '../../../core/Router/Link';
+import { ADMIN } from '../../../services/userRoles';
 
 class Navigation extends Component {
   constructor() {
     super();
     this.state = {
       productsCount: 0,
-      user: null,
     };
+  }
+
+  static get observedAttributes() {
+    return ['user'];
   }
 
   setProductsCount = (count) => {
@@ -50,17 +54,7 @@ class Navigation extends Component {
     this.setProductsCount(count);
   };
 
-  setUser(evt) {
-    this.setState((state) => {
-      return {
-        ...state,
-        user: evt.detail.user,
-      };
-    });
-  }
-
   componentDidMount() {
-    eventEmmiter.on(APP_EVENTS.authorizeUser, this.setUser);
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);
     const items = storageService.getItem(APP_STORAGE_KEYS.cartData) ?? [];
     const count = this.countProducts(items);
@@ -69,7 +63,28 @@ class Navigation extends Component {
 
   componentWillUnmount() {
     eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
-    eventEmmiter.off(APP_EVENTS.authorizeUser, this.setUser);
+  }
+
+  getItems() {
+    const user = JSON.parse(this.props.user);
+    console.log(user);
+    if (user) {
+      if (user.email === ADMIN) {
+        return appPages.filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn].every((item) => item !== menuItem.href);
+        });
+      } else {
+        return appPages.filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn, APP_ROUTES.admin].every(
+            (item) => item !== menuItem.href,
+          );
+        });
+      }
+    } else {
+      return appPages.filter((menuItem) => {
+        return [APP_ROUTES.signOut, APP_ROUTES.admin].every((item) => item !== menuItem.href);
+      });
+    }
   }
 
   render() {
@@ -78,7 +93,7 @@ class Navigation extends Component {
         <div class="container">
           <div class="collapse navbar-collapse d-flex justify-content-between">
             <menu-items 
-              items='${JSON.stringify(appPages)}'
+              items='${JSON.stringify(this.getItems())}'
             ></menu-items>
             
             <ul class="navbar-nav">

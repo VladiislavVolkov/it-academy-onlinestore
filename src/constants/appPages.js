@@ -29,4 +29,8 @@ export const appPages = [
     href: APP_ROUTES.signIn,
     label: 'Вход',
   },
+  {
+    href: APP_ROUTES.signOut,
+    label: 'Выход',
+  },
 ];

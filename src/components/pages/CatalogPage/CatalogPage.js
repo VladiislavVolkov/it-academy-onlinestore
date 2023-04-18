@@ -11,6 +11,7 @@ import { CATEGORIES } from '../../../constants/categories';
 import { databaseService } from '../../../services/DatabaseService';
 import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
 
+
 class CatalogPage extends Component {
   constructor() {
     super();

@@ -17,7 +17,7 @@ class CardList extends Component {
                 return `
                 <div class="col-sm-3 mb-3">
                     <it-card
-                        image='${item.images[0]}'
+                        image='${item.preview}'
                         title='${item.title}'
                         price='${item.price}'
                         description='${item.description}'

@@ -68,6 +68,12 @@ class CartPage extends Component {
     eventEmmiter.off(APP_EVENTS.storage, this.onStorage);
   }
 
+  sumProducts(products) {
+    return products.reduce((acc, item) => {
+      return (acc += item.quantity ? item.price * item.quantity : item.price);
+    }, 0);
+  }
+
   render() {
     return `
       <div class="container mt-5">
@@ -107,6 +113,12 @@ class CartPage extends Component {
               })
               .join('')}
           </tbody>
+          <tfooter>
+              <tr>
+                <td>Сумма: </td>
+                <td colspan="6">${this.sumProducts(this.state.products)}</td>
+              </tr>          
+          </tfooter>
         </table>
       </div>
     `;

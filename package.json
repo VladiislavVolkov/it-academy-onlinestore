@@ -8,7 +8,11 @@
     "build": "webpack --config webpack.build.config.js",
     "start": "webpack serve --open --config webpack.dev.config.js",
     "eslint": "eslint",
-    "eslint:fix": "eslint --fix --ext .js src"
+    "eslint:fix": "eslint --fix --ext .js src",
+    "firebase:login": "firebase login",
+    "firebase:init": "firebase init",
+    "firebase:logout": "firebase logout",
+    "firebase:deploy": "firebase deploy"
   },
   "keywords": [],
   "author": "",

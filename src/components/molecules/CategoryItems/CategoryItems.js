@@ -37,6 +37,7 @@ class CategoryItems extends Component {
     const items = JSON.parse(this.props.items);
     this.setActiveCategory(items[0]);
     this.addEventListener('click', this.setCategory);
+    console.log(localStorage.getItem('locatation'));
   }
 
   componentWillUnmount() {

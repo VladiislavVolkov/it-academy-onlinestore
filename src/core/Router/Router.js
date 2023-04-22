@@ -43,6 +43,7 @@ export class Router extends HTMLElement {
       this.activeRoute = matchedRoute;
       window.history.pushState(null, '', url);
       this.update();
+      localStorage.setItem('location', matchedRoute);
     }
   }
 
